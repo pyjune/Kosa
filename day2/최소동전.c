@@ -30,9 +30,52 @@ int main(void)
 			adj[n1][n2] = 1;
 			ind[n2]++; // 진입차수는 도착으로 언급된 횟수 
 		}
-		printf("#%d %d\n", tc, find(N));
+		printf("#%d %d\n", tc, find2(N));
 	}
 	return 0;
+}
+
+int find2(int n)
+{
+	int t;
+	int last;
+	for(int i = 1; i <= n; i++) // 모든 사람 i에 대해 
+	{
+		if(ind[i] == 0) // 진입차수가 0이면 
+		{
+			q[++rear] = i; // enqueue
+			coin[i] = 1;
+		}
+	}
+	while( front != rear )
+	{
+		t = q[++front]; // dequeue
+		int maxV = 0;
+		for(int i = 1; i <= n; i++) // coin[t] 결정 
+		{
+			if( adj[i][t] !=0 )
+			{
+				if(maxV < coin[i])
+				{
+					maxV = coin[i];
+				}
+			}
+		}
+		coin[t] = maxV + 1;
+		last = coin[t];
+		for(int i = 1; i <= n; i++)
+		{
+			if( adj[t][i] != 0 ) // t->i 인접이면
+			{
+				ind[i]--; // i의 진입차수 감소 (i 앞의 노드 한개가 처리됨)
+				if(ind[i] == 0) // i로 진입하는 모든 노드가 처리된 경우 
+				{
+					q[++rear] = i; // enqueue
+				} 
+			}
+		}
+	}
+	return last;
 }
 
 int find(int n)
