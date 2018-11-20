@@ -112,3 +112,33 @@ int bfs(int r, int c)
 	}
 	return 0; // 목적지에 도착할 수 없는 경우 
 }
+
+// for문을 사용한 dfs
+void find(int r, int c, int e)
+{
+	int dr[] = { 0, 1, 0, -1};
+	int dc[] = { 1, 0, -1, 0};
+	int nr, nc;
+	
+	if( maze[r][c] == 3)
+	{
+		if( minV > e)
+		{
+			minV = e;
+		}
+	}
+	else
+	{
+		maze[r][c] = 1; // 지나간 칸은 벽으로 변경 
+		for(int i = 0 ; i < 4; i++)
+		{
+			nr = r + dr[i];
+			nc = c + dc[i];
+			if( maze[nr][nc] != 1) // 벽이 아니면 인접...
+			{
+				find(nr, nc, e + 1);
+			} 
+		}
+		maze[r][c] = 0;
+	}
+}
