@@ -31,6 +31,15 @@ int main(void)
 			ind[n2]++; // 진입차수는 도착으로 언급된 횟수 
 		}
 		printf("#%d %d\n", tc, find2(N));
+		for(int i = 1; i<= N; i++)
+		{
+			ind[i] = 0;
+			coin[i] = 0;
+			for(int j = 1; j <= N; j++)
+			{
+				adj[i][j] = 0;
+			}
+		}
 	}
 	return 0;
 }
