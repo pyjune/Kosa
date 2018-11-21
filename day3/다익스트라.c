@@ -73,7 +73,7 @@ void dij(int s) // 1번에서 다른 노드까지의 최소비용을 구하는 �
 		minV = INF;
 		for(int i = 1; i <= V; i++) // 경유지로 고려되지 않은 노드 i에 대해 d[i]가 최소인 노드 찾기 
 		{
-			if(( u[i] == 0 ) && (d[i] < minV)) 
+			if(( u[i] == 0 ) && (d[i] <= minV)) 
 			{
 				t = i;
 				minV = d[i];
