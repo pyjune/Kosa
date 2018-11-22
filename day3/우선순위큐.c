@@ -29,7 +29,7 @@ void enq(int n)
 	int p = c / 2;
 	int t;
 	pq[last] = n;
-	while((c > 1)&&( pq[c] < pq[p] )) // 부모가 있고  부모가 크면 교환(최소힙) 
+	while((c > 1)&&( pq[c] < pq[p] )) // 부모가 있고 자식이 작으면 교환(최소힙) 
 	{
 		t = pq[p];
 		pq[p] = pq[c];
